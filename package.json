@@ -1,0 +1,24 @@
+{
+  "name": "webpack-clean-by-manifest-plugin",
+  "version": "1.0.0",
+  "description": "Clean the dist directory by manifest while watching",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyua/webpack-clean-by-manifest-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "manifest",
+    "clean"
+  ],
+  "author": "KotoKun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cyua/webpack-clean-by-manifest-plugin/issues"
+  },
+  "homepage": "https://github.com/Cyua/webpack-clean-by-manifest-plugin#readme"
+}
