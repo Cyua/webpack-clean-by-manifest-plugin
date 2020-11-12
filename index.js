@@ -1,6 +1,7 @@
 require('colors')
 const path = require('path')
 const fs = require('fs')
+var _ = require('lodash');
 
 
 const logger = {
@@ -18,7 +19,7 @@ const walk = (dir, callback) => {
 		files.forEach(item => {
 			const filepath = path.join(dir, item)
 			if (fs.lstatSync(filepath).isDirectory()) walk(filepath, callback)
-			else callback(filepath)
+			else callback(filepath,item)
 		})
 	})
 }
@@ -27,6 +28,10 @@ const walk = (dir, callback) => {
 function CleanOnWatchByManifestPlugin(options) {
 	this.disable = (options && options.disable)
 	this.disable = (process.env.NODE_ENV === 'production')
+	this.opts = _.assign({
+		disable:false,
+		whiteList:[],
+	}, options || {})
 }
 
 
@@ -51,8 +56,8 @@ CleanOnWatchByManifestPlugin.prototype.apply = function (compiler) {
 			}
 			newlyCreatedFile[manifest] = true
 
-			const deleteFilesIfOld = file => {
-				if (!newlyCreatedFile[file]) {
+			const deleteFilesIfOld = (file,filename) => {
+				if (!newlyCreatedFile[file] && !this.opts.whiteList.includes(filename)) {
 					logger.log('removed old file: '.cyan + file.magenta)
 					fs.unlinkSync(file)
 				}

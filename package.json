@@ -1,6 +1,6 @@
 {
   "name": "webpack-clean-by-manifest-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Clean the dist directory by manifest while watching",
   "main": "index.js",
   "scripts": {
